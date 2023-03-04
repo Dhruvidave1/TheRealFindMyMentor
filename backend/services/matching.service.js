@@ -35,25 +35,38 @@ export async function getMatches(uid) {
 
 async function getMentees(user) {
   const menteeDesignations = USER_CAN_MENTOR[user.designation];
-  const result = await Profile.find({
-    isMentee: true,
-    designation: { $in: menteeDesignations },
-  }).exec();
+  const result = await getAllEligibleMentees();
   console.log("Number of mentees: " + result.length);
   return result;
+
+  async function getAllEligibleMentees() {
+    return await Profile.find({
+      isMentee: true,
+      designation: { $in: menteeDesignations },
+    }).exec();
+  }
 }
 
 async function getMentors(user) {
-  const mentorDesignations = [];
-  for (const mentorGroup in USER_CAN_MENTOR) {
-    if (USER_CAN_MENTOR[mentorGroup].includes(user.designation)) {
-      mentorDesignations.push(mentorGroup);
-    }
-  }
-  const result = await Profile.find({
-    isMentor: true,
-    designation: { $in: mentorDesignations },
-  }).exec();
+  const mentorDesignations = getEligibleMentorDesignations();
+  const result = await getAllEligibleMentors();
   console.log("Number of mentors: " + result.length);
   return result;
+
+  async function getAllEligibleMentors() {
+    return await Profile.find({
+      isMentor: true,
+      designation: { $in: mentorDesignations },
+    }).exec();
+  }
+
+  function getEligibleMentorDesignations() {
+    const mentorDesignations = [];
+    for (const mentorGroup in USER_CAN_MENTOR) {
+      if (USER_CAN_MENTOR[mentorGroup].includes(user.designation)) {
+        mentorDesignations.push(mentorGroup);
+      }
+    }
+    return mentorDesignations;
+  }
 }
