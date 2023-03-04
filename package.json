@@ -1,0 +1,19 @@
+{
+  "name": "findmymentor",
+  "version": "1.0.0",
+  "description": "Find My Mentor App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dhruvidave1/FindMyMentor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dhruvidave1/FindMyMentor/issues"
+  },
+  "homepage": "https://github.com/Dhruvidave1/FindMyMentor#readme"
+}
