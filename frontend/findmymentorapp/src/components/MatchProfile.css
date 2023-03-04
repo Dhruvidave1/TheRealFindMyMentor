@@ -41,24 +41,27 @@
   }
 }
 
-.buttons-container {
+.button-container {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 16px;
 }
 
 .like-button {
-  background-color: #3CB371;
+  background-color: #3CB371 !important;
   border-radius: 10%;
   width: 150px;
   height: 80px;
-  font-size: 25px;
+  font-size: 30px !important;
+  margin-left: 25px !important;
 }
 
 .dislike-button {
-  background-color: #FF4500;
+  background-color: #FF4500 !important;
   border-radius: 10%;
   width: 150px;
   height: 80px;
-  font-size: 25px;
+  font-size: 30px !important;
+  margin-right: 25px !important;
 }
