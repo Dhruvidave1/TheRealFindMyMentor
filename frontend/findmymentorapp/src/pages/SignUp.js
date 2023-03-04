@@ -136,7 +136,7 @@ export default function SignUp() {
       designation: designation,
       zone: zone,
     };
-    
+
     if (isMentee && !isMentor) {
       profile.areasInterest = areaOfIntrest;
       profile.mentorshipGoals = mentorshipGoals;
@@ -149,6 +149,7 @@ export default function SignUp() {
       profile.areaPractice = areaOfPractice;
       profile.skills = skills;
     }
+    console.log(profile);
   };
 
   return (
