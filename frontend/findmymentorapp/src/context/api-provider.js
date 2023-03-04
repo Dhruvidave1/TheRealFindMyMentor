@@ -24,8 +24,7 @@ export function APIProvider(props) {
       });
 
       const body = await response.json();
-      console.log(body);
-      if (body.success === true) {
+      if (response.ok) {
         // Set the token in session storage for use in later API calls
         const { token, _id } = body;
         setJwt(token);
@@ -76,23 +75,6 @@ export function APIProvider(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(registrationData),
-        // body: JSON.stringify({
-        //   firstName: firstName,
-        //   lastName: lastName,
-        //   email: email,
-        //   password: password,
-        //   biography: biography,
-        //   workLocation: workLocation,
-        //   isMentor: isMentor,
-        //   isMentee: isMentee,
-        //   yearsOfPractice: yearsOfPractice,
-        //   designation: designation,
-        //   zone: zone,
-        //   areaPractice: areaPractice || null,
-        //   skills: skills || [],
-        //   areasInterest: areasInterest || [],
-        //   mentorshipGoals: mentorshipGoals || [],
-        // }),
       });
       const body = await response.json();
 
