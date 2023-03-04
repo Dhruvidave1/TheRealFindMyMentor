@@ -7,26 +7,28 @@ import Match from './pages/Match';
 import Signup from './pages/SignUp';
 import Summary from './pages/Summary';
 import ViewProfile from './pages/ViewProfile';
+import { APIProvider } from './context/api-provider';
 
 function App() {
 
 
   return (
     <>
+    <APIProvider>
       <Router>
         <Navbar />
         <Routes>
           <Route path='/' element={<LogIn />} />
           <Route path='/DashBoard' element={<DashBoard />} />
           <Route path='/Match' element={<Match />} />
-          <Route path='/Login' element={<LogIn />} /> 
+          <Route path='/SignIn' element={<LogIn />} /> 
           <Route path='/Signup' element={<Signup />} />
           <Route path='/Summary' element={<Summary />} />      
           <Route path='/ViewProfile' element={<ViewProfile />} />
           
         </Routes>
       </Router>
-
+    </APIProvider>
     </>
   );
 }
