@@ -145,7 +145,7 @@ export default function SignUp() {
     } else if (isMentor && !isMentee) {
       profile.areaPractice = areaOfPractice;
       profile.skills = skills;
-    } else {
+    } else if (isMentor && isMentee) {
       profile.areasInterest = areaOfIntrest;
       profile.mentorshipGoals = mentorshipGoals;
       profile.areaPractice = areaOfPractice;
