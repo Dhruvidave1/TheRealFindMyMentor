@@ -115,7 +115,7 @@ export function APIProvider(props) {
                 register, 
                 getUserInfo, 
             }}>
-
+        {props.children}
         </APIContext.Provider>
       )
 
