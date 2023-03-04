@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './MatchProfile.css';
 import Button from '@mui/material/Button';
+import logo from './DC_Headshot1.jpg';
 
 function MatchProfile(props) {
 	const {
@@ -16,7 +17,7 @@ function MatchProfile(props) {
 	return (
 		<div>
 			<div className='match-profile'>
-				<img src='./DC_Headshot.jpg' alt={`${firstName} ${lastName}`} />
+				<img src={logo} alt={`${firstName} ${lastName}`} />
 				<h3>
 					{firstName} {lastName}
 				</h3>
