@@ -35,15 +35,33 @@ export async function getMatches(uid) {
 
 async function getMentees(user) {
   const menteeDesignations = USER_CAN_MENTOR[user.designation];
-  const result = await getAllEligibleUsers(menteeDesignations, "mentees");
+  const potentialMatches = await getAllEligibleUsers(
+    menteeDesignations,
+    "mentees"
+  );
+  const result = getBestMatches(user, potentialMatches);
   console.log("Number of mentees: " + result.length);
+  console.log("Top 3 matches:");
+  for (let i = 0; i < 5; i++) {
+    console.log(result[i].matchScore, result[i]);
+  }
   return result;
 }
 
 async function getMentors(user) {
   const mentorDesignations = getEligibleMentorDesignations();
-  const result = await getAllEligibleUsers(mentorDesignations, "mentors");
+  const potentialMatches = await getAllEligibleUsers(
+    mentorDesignations,
+    "mentors"
+  );
+  const result = getBestMatches(user, potentialMatches);
+
   console.log("Number of mentors: " + result.length);
+  console.log("Top 3 matches:");
+  for (let i = 0; i < 5; i++) {
+    console.log(result[i].matchScore, result[i]);
+  }
+
   return result;
 
   function getEligibleMentorDesignations() {
@@ -56,6 +74,7 @@ async function getMentors(user) {
     return mentorDesignations;
   }
 }
+
 async function getAllEligibleUsers(allowedDesignations, userType) {
   const query = Profile.find({
     designation: { $in: allowedDesignations },
@@ -66,4 +85,41 @@ async function getAllEligibleUsers(allowedDesignations, userType) {
     query.where("isMentee", true);
   }
   return await query.exec();
+}
+
+function getBestMatches(user, matches) {
+  const result = [...matches];
+  for (const match of result) {
+    match.matchScore = genMatchScore(match);
+  }
+  return result
+    .filter((match) => match.matchScore > 0)
+    .sort((a, b) => {
+      console.log(a.matchScore, b.matchScore);
+      return b.matchScore - a.matchScore;
+    });
+
+  function genMatchScore(match) {
+    let result = 0;
+    result += countMatches(user.zone, match.zone);
+    if (user.isMentee) {
+      result += countMatches(user.areasInterest, match.areaPractice);
+      result += countMatches(user.mentorshipGoals, match.skills);
+    }
+    if (user.isMentor) {
+      result += countMatches(match.areaPractice, user.areasInterest);
+      result += countMatches(match.skills, user.mentorshipGoals);
+    }
+    return result;
+  }
+
+  function countMatches(userField, matchField) {
+    let result = 0;
+    for (const item of userField) {
+      if (matchField.includes(item)) {
+        result++;
+      }
+    }
+    return result;
+  }
 }
