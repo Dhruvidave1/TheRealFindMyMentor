@@ -44,6 +44,7 @@ export default function SignIn() {
 			if (response.ok) {
 				const { token, _id } = body;
 				setJwt(token);
+				localStorage.setItem('jwt', token);
 				setUserId(_id);
 				navigate('/Match');
 				return true;
