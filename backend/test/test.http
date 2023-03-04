@@ -2,7 +2,7 @@
 
 # @name login
 
-GET http://127.0.0.git p1:3000/api/user/login
+GET http://127.0.0.1:3000/api/user/login
 content-type: application/json; charset=utf-8
 
 {
@@ -18,3 +18,6 @@ GET http://127.0.0.1:3000/api/user
 Authorization: Bearer {{authToken}}
 
 ### 
+
+GET http://127.0.0.1:3000/api/match
+Authorization: Bearer {{authToken}}
