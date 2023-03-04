@@ -7,7 +7,6 @@ export const APIContext = createContext();
 
 export function APIProvider(props) {
   const [jwt, setJwt] = useSessionStorageState("jwt", null);
-  const [userId, setUserId] = useSessionStorageState("userId", null);
 
   useEffect(() => {}, []);
 
@@ -26,15 +25,18 @@ export function APIProvider(props) {
       const body = await response.json();
       if (response.ok) {
         // Set the token in session storage for use in later API calls
-        const { token, _id } = body;
+        const { token } = body;
         setJwt(token);
-        setUserId(_id);
         return true;
       } else return body;
     } catch (e) {
       console.log(e);
       return "Server communication error";
     }
+  }
+
+  function logout() {
+    setJwt(null);
   }
 
   function isLoggedIn() {
@@ -61,11 +63,6 @@ export function APIProvider(props) {
     }
   }
 
-  function logout() {
-    setJwt(null);
-    setUserId(null);
-  }
-
   async function register(registrationData) {
     // Send credentials to server and save the token from the response
     try {
@@ -79,6 +76,8 @@ export function APIProvider(props) {
       const body = await response.json();
 
       if (response.ok) {
+        const { token } = body;
+        setJwt(token);
         return true;
       } else return body.message;
     } catch (e) {
