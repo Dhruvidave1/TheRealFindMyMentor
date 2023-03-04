@@ -16,8 +16,15 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
+
 import * as React from "react";
-import { AREA, SKILLS_GOALS, YEARS_OF_PRACTICE } from "../constants.mjs";
+import {
+  AREA,
+  DESIGNATION,
+  SKILLS_GOALS,
+  YEARS_OF_PRACTICE,
+  ZONE,
+} from "../constants.mjs";
 
 const theme = createTheme();
 
@@ -51,6 +58,8 @@ export default function SignUp() {
   const [isMentee, setIsMentee] = React.useState(false);
   const [isMentor, setIsMentor] = React.useState(false);
   const [yearsOfPractice, setYearsOfPractice] = React.useState("");
+  const [designation, setDesignation] = React.useState("");
+  const [zone, setZone] = React.useState("");
 
   const [areaOfPractice, setAreaOfPractice] = React.useState([]);
   const [skills, setSkills] = React.useState([]);
@@ -116,10 +125,20 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const profile = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      workLocation: location,
+      isMentor: isMentor,
+      isMentee: isMentee,
+      yearsOfPractice: yearsOfPractice,
+      designation: designation,
+      zone: zone,
+      areasInterest: areaOfIntrest,
+      mentorshipGoals: mentorshipGoals,
+    };
   };
 
   return (
@@ -204,7 +223,7 @@ export default function SignUp() {
                   type="location"
                   id="location"
                   autoComplete="off"
-                  value={password}
+                  value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
               </Grid>
@@ -217,7 +236,7 @@ export default function SignUp() {
                   type="biography"
                   id="biography"
                   autoComplete="off"
-                  value={password}
+                  value={biography}
                   onChange={(e) => setBiography(e.target.value)}
                 />
               </Grid>
@@ -234,6 +253,42 @@ export default function SignUp() {
                       value={yearsOfPractice}
                       onChange={(e) => setYearsOfPractice(e.target.value)}>
                       {YEARS_OF_PRACTICE.map((choice) => (
+                        <MenuItem value={choice}>{choice}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="designaiton-select-label">
+                      Designation
+                    </InputLabel>
+                    <Select
+                      labelId="designation-select-label"
+                      id="designation-select-label"
+                      label="Designation"
+                      value={designation}
+                      onChange={(e) => setDesignation(e.target.value)}>
+                      {DESIGNATION.map((choice) => (
+                        <MenuItem value={choice}>{choice}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="zone-select-label">Zone</InputLabel>
+                    <Select
+                      labelId="zone-select-label"
+                      id="zone-select-label"
+                      label="zone"
+                      value={zone}
+                      onChange={(e) => setZone(e.target.value)}>
+                      {ZONE.map((choice) => (
                         <MenuItem value={choice}>{choice}</MenuItem>
                       ))}
                     </Select>
@@ -300,6 +355,7 @@ export default function SignUp() {
                     </div>
                   </div>
                 )}
+
                 {isMentee && (
                   <div>
                     <div>
@@ -311,7 +367,7 @@ export default function SignUp() {
                           labelId="multiple-area-label"
                           id="multiple-area"
                           multiple
-                          value={areaOfPractice}
+                          value={areaOfIntrest}
                           onChange={handleAreaOfInterestChange}
                           input={<OutlinedInput label="Area of Interest" />}
                           MenuProps={MenuProps}>
@@ -335,7 +391,7 @@ export default function SignUp() {
                           labelId="multiple-goal-label"
                           id="multiple-goal"
                           multiple
-                          value={skills}
+                          value={mentorshipGoals}
                           onChange={handleMentorshipGoalsChange}
                           input={<OutlinedInput label="Mentorship Goals" />}
                           MenuProps={MenuProps}>
@@ -363,7 +419,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/signin" href="#" variant="body2">
+                <Link href="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
