@@ -1,9 +1,7 @@
-// Add services if needed
+import asyncHandler from 'express-async-handler';
 
-controllerMethods  = {}
+const getMatches = asyncHandler(async (req, res) => {
+	res.send({ success: true, data: 'matches!' });
+});
 
-controllerMethods.getMatches = async (req, res) => {
-    res.send({success: true, data: 'matches!'});
-}
-
-module.exports = controllerMethods;
+export { getMatches };

@@ -1,8 +1,8 @@
-const express = require("express");
-const matchController = require('../controllers/matchController');
+import { Router } from 'express';
+import { getMatches } from '../controllers/matchController.js';
 
-const router = express.Router();
+const router = Router();
 
-router.get("/", matchController.getMatches);
+router.get('/', getMatches);
 
-module.exports = router;
+export default router;

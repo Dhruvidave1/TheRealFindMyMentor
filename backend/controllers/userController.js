@@ -1,25 +1,21 @@
 // Add services if needed
 
+// controllerMethods = {};
 
-controllerMethods  = {}
+export const getUsers = async (req, res) => {
+	res.send({ success: true, data: 'getUsers!' });
+};
 
-controllerMethods.getUsers = async (req, res) => {
-    res.send({ success: true, data: 'getUsers!' });
-}
+export const createUser = async (req, res) => {
+	res.send({ success: true, data: 'createUsers!' });
+};
 
-controllerMethods.createUser = async (req, res) => {
-    res.send({ success: true, data: 'createUsers!' });
-}
+export const updateUser = async (req, res) => {
+	res.send({ success: true, data: 'updateUser!' });
+};
 
-controllerMethods.updateUser = async (req, res) => {
-    res.send({success: true, data: 'updateUser!'});
-}
+export const deleteUser = async (req, res) => {
+	res.send({ success: true, data: 'deleteUser!' });
+};
 
-controllerMethods.deleteUser = async (req, res) => {
-    res.send({success: true, data: 'deleteUser!'});
-}
-
-
-
-module.exports = controllerMethods;
-
+// export default controllerMethods;
