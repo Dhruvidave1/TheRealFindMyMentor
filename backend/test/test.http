@@ -2,7 +2,7 @@
 
 # @name login
 
-GET http://127.0.0.1:3000/api/user/login
+POST http://127.0.0.1:4000/api/user/login
 content-type: application/json; charset=utf-8
 
 {
@@ -14,10 +14,10 @@ content-type: application/json; charset=utf-8
 @authToken = {{login.response.body.token}}
 ###
 
-GET http://127.0.0.1:3000/api/user
+GET http://127.0.0.1:4000/api/user
 Authorization: Bearer {{authToken}}
 
 ### 
 
-GET http://127.0.0.1:3000/api/match
+GET http://127.0.0.1:4000/api/match
 Authorization: Bearer {{authToken}}
