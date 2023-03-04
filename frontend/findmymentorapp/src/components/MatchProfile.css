@@ -1,0 +1,67 @@
+.match-profile {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(198, 189, 189, 0.1);
+  margin: 10px;
+  overflow: hidden;
+  width: 350px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5%;
+}
+
+.match-profile img {
+  margin-top: 30px;
+  width: 95%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.match-profile h3 {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.match-profile p {
+  margin-top: 5px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+
+@media (max-width: 768px) {
+  .match-profile-container {
+    width: 100%;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.like-button {
+  background-color: #3CB371 !important;
+  border-radius: 10%;
+  width: 150px;
+  height: 80px;
+  font-size: 30px !important;
+  margin-left: 25px !important;
+}
+
+.dislike-button {
+  background-color: #FF4500 !important;
+  border-radius: 10%;
+  width: 150px;
+  height: 80px;
+  font-size: 30px !important;
+  margin-right: 25px !important;
+}
