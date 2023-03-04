@@ -107,6 +107,9 @@ function getBestMatches(user, matches) {
   function countMatches(userField, matchField) {
     let result = 0;
 
+    if (!userField || !matchField) {
+      return result;
+    }
     for (const item of userField) {
       if (matchField.includes(item)) {
         result++;
