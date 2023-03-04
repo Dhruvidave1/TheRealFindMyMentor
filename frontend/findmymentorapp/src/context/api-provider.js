@@ -1,7 +1,7 @@
 import React, { createContext, useEffect } from "react";
 import { useSessionStorageState } from "../hooks/useSessionStorageState";
 
-const API_URL = "http://localhost:3000/api/";
+const API_URL = "http://localhost:4000/api/";
 
 export const APIContext = createContext();
 
@@ -9,6 +9,10 @@ export function APIProvider(props) {
 
     const [jwt, setJwt] = useSessionStorageState("jwt", null);
     const [userId, setUserId] = useSessionStorageState("userId", null);
+
+    useEffect(() => {
+
+    },[]);
 
 
     async function login(email, password) {
@@ -115,7 +119,7 @@ export function APIProvider(props) {
                 register, 
                 getUserInfo, 
             }}>
-
+              {props.children}
         </APIContext.Provider>
       )
 

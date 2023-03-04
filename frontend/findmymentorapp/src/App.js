@@ -25,7 +25,6 @@ function App() {
           <Route path='/Signup' element={<Signup />} />
           <Route path='/Summary' element={<Summary />} />      
           <Route path='/ViewProfile' element={<ViewProfile />} />
-          
         </Routes>
       </Router>
     </APIProvider>
