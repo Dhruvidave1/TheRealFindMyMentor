@@ -16,13 +16,15 @@ function ViewProfile() {
         <div className="profile-container">
             <div className='all'>
                 <h1> Edit Profile </h1>
+                
                 <div className='headshot'>
-                    <img src={"Images/DC_Headshot.jpg" } alt="headshot" width="200" length= "200" ></img>
+                    <img src={"Images/DC_Headshot.jpg" } alt="headshot" width="200" length= "200" style={{borderRadius: '5%'}}></img>
                 </div>
 
                 <div className='title'>
                     <h1> Name Of Nurse </h1>
                 </div>
+                
                 <TextField className='name'
                 required 
                 id='outlined-required'
