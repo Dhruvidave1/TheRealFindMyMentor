@@ -29,7 +29,6 @@ export async function getMatches(uid) {
   if (user.isMentee) {
     matches.mentors = await getMentors(user);
   }
-  //   console.log(matches);
   return matches;
 }
 
@@ -58,9 +57,10 @@ async function getMentors(user) {
 
   console.log("Number of mentors: " + result.length);
   console.log("Top 3 matches:");
-  for (let i = 0; i < 5; i++) {
-    console.log(result[i].matchScore, result[i]);
-  }
+  console.log(result.map((r) => r.matchScore));
+  //   for (let i = 0; i < 5; i++) {
+  //     console.log(result[i].matchScore, result[i]);
+  //   }
 
   return result;
 
@@ -94,10 +94,7 @@ function getBestMatches(user, matches) {
   }
   return result
     .filter((match) => match.matchScore > 0)
-    .sort((a, b) => {
-      console.log(a.matchScore, b.matchScore);
-      return b.matchScore - a.matchScore;
-    });
+    .sort((a, b) => b.matchScore - a.matchScore);
 
   function genMatchScore(match) {
     let result = 0;
