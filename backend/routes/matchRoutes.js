@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getMatches } from '../controllers/matchController.js';
+import { getMatchesController } from '../controllers/matchController.js';
+import { protect } from '../authMiddleware.js';
 
 const router = Router();
 
-router.get('/', getMatches);
+router.get('/', protect, getMatchesController);
 
 export default router;
