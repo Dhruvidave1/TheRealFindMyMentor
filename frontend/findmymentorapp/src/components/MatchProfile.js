@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function Match({ person }) {
+function MatchProfile({ person }) {
   const {
     firstName,
     lastName,
@@ -40,4 +40,4 @@ function Match({ person }) {
   );
 }
 
-export default Match;
+export default MatchProfile;
