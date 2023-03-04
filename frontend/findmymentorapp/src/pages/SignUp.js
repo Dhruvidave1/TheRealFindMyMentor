@@ -60,7 +60,7 @@ export default function SignUp() {
   const [designation, setDesignation] = React.useState("");
   const [zone, setZone] = React.useState("");
 
-  const [areaOfPractice, setAreaOfPractice] = React.useState([]);
+  const [areaOfPractice, setAreaOfPractice] = React.useState("");
   const [skills, setSkills] = React.useState([]);
 
   const [areaOfIntrest, setAreaOfInterest] = React.useState([]);
@@ -316,28 +316,23 @@ export default function SignUp() {
                 {isMentor && (
                   <div>
                     <div>
-                      <FormControl sx={{ m: 1, width: 600 }}>
-                        <InputLabel id="multiple-area-label">
-                          Area of Practice
-                        </InputLabel>
-                        <Select
-                          labelId="multiple-area-label"
-                          id="multiple-area"
-                          multiple
-                          value={areaOfPractice}
-                          onChange={handleAreaOfPracticeChange}
-                          input={<OutlinedInput label="Area of Practice" />}
-                          MenuProps={MenuProps}>
-                          {AREA.map((area) => (
-                            <MenuItem
-                              key={area}
-                              value={area}
-                              style={getStyles(area, areaOfPractice, theme)}>
-                              {area}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
+                      <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="area-of-practice-select-label">
+                            Area of Practice
+                          </InputLabel>
+                          <Select
+                            labelId="area-of-practice-select-label"
+                            id="area-of-practice-select-label"
+                            label="area of Practice"
+                            value={areaOfPractice}
+                            onChange={(e) => setAreaOfPractice(e.target.value)}>
+                            {AREA.map((choice) => (
+                              <MenuItem value={choice}>{choice}</MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Box>
                     </div>
                     <div>
                       <FormControl sx={{ m: 1, width: 600 }}>
