@@ -1,0 +1,20 @@
+// test the get matches route
+
+# @name login
+
+GET http://127.0.0.git p1:3000/api/user/login
+content-type: application/json; charset=utf-8
+
+{
+    "email": "ella.lewis@email.com",
+    "password": "password"
+}
+
+###
+@authToken = {{login.response.body.token}}
+###
+
+GET http://127.0.0.1:3000/api/user
+Authorization: Bearer {{authToken}}
+
+### 
