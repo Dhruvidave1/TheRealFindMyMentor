@@ -55,6 +55,8 @@ export const createUser = async (req, res) => {
 
   if (userExists) {
     res.status(400).send({ message: "User already exists" });
+    console.log("User already exists");
+    return;
   }
 
   try {
