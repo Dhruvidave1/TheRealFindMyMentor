@@ -12,23 +12,60 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState, useContext} from "react";
+import { useSessionStorageState } from "../hooks/useSessionStorageState";
+import { APIProvider } from '../context/api-provider';
 
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
+
+const API_URL = "http://localhost:4000/api/"; 
 
 const theme = createTheme();
 
 export default function SignIn() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [jwt, setJwt] = useSessionStorageState("jwt", null);
+  const [userId, setUserId] = useSessionStorageState("userId", null);
+
+  async function login(email, password) {
+    // Send credentials to server and save the token from the response
+    try {
+      const response = await fetch(API_URL + "user/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+        
+      });
+      
+      const body = await response.json();
+      console.log(body);
+      if (body.success === true) {
+        // Set the token in session storage for use in later API calls
+        const { token, _id } = body;
+        setJwt(token);
+        setUserId(_id);
+        return true;
+      } else return body;
+      
+    } catch (e) {
+      console.log(e);
+      return "Server communication error";
+    }
+    
+  }
+  
+  
+  const loginFunc = async (e) => {
+    e.preventDefault();
+    const result = await login(email,password);
+    console.log(result);
+  }
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
