@@ -7,12 +7,14 @@ import Match from './pages/Match';
 import Signup from './pages/SignUp';
 import Summary from './pages/Summary';
 import ViewProfile from './pages/ViewProfile';
+import { APIProvider } from './context/api-provider';
 
 function App() {
 
 
   return (
     <>
+    <APIProvider>
       <Router>
         <Navbar />
         <Routes>
@@ -26,7 +28,7 @@ function App() {
           
         </Routes>
       </Router>
-
+    </APIProvider>
     </>
   );
 }
