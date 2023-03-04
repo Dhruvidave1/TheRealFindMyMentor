@@ -19,10 +19,11 @@ function Match() {
 
   return (
     <div className="match-container">
-      {mentors &&
-        mentors.map((person, index) => (
-          <MatchProfile person={person} key={index} />
-        ))}
+      {mentors
+        ? mentors.map((person, index) => (
+            <MatchProfile person={person} key={index} />
+          ))
+        : "No matches to display. Please update your profile to add more information."}
     </div>
   );
 }
