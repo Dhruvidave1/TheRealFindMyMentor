@@ -15,6 +15,8 @@ import Select from "@mui/material/Select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useContext } from "react";
+import { APIContext } from "../context/api-provider.js";
 
 import * as React from "react";
 import {
@@ -59,6 +61,7 @@ export default function SignUp() {
   const [yearsOfPractice, setYearsOfPractice] = React.useState("");
   const [designation, setDesignation] = React.useState("");
   const [zone, setZone] = React.useState("");
+  const { register } = useContext(APIContext);
 
   const [areaOfPractice, setAreaOfPractice] = React.useState([]);
   const [skills, setSkills] = React.useState([]);
@@ -148,6 +151,7 @@ export default function SignUp() {
       profile.areaPractice = areaOfPractice;
       profile.skills = skills;
     }
+    register(profile);
     console.log(profile);
   };
 
@@ -161,7 +165,8 @@ export default function SignUp() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -172,7 +177,8 @@ export default function SignUp() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}>
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -261,7 +267,8 @@ export default function SignUp() {
                       id="years-of-practice-select-label"
                       label="Years of Practice"
                       value={yearsOfPractice}
-                      onChange={(e) => setYearsOfPractice(e.target.value)}>
+                      onChange={(e) => setYearsOfPractice(e.target.value)}
+                    >
                       {YEARS_OF_PRACTICE.map((choice) => (
                         <MenuItem value={choice}>{choice}</MenuItem>
                       ))}
@@ -280,7 +287,8 @@ export default function SignUp() {
                       id="designation-select-label"
                       label="Designation"
                       value={designation}
-                      onChange={(e) => setDesignation(e.target.value)}>
+                      onChange={(e) => setDesignation(e.target.value)}
+                    >
                       {DESIGNATION.map((choice) => (
                         <MenuItem value={choice}>{choice}</MenuItem>
                       ))}
@@ -297,7 +305,8 @@ export default function SignUp() {
                       id="zone-select-label"
                       label="zone"
                       value={zone}
-                      onChange={(e) => setZone(e.target.value)}>
+                      onChange={(e) => setZone(e.target.value)}
+                    >
                       {ZONE.map((choice) => (
                         <MenuItem value={choice}>{choice}</MenuItem>
                       ))}
@@ -327,12 +336,14 @@ export default function SignUp() {
                           value={areaOfPractice}
                           onChange={handleAreaOfPracticeChange}
                           input={<OutlinedInput label="Area of Practice" />}
-                          MenuProps={MenuProps}>
+                          MenuProps={MenuProps}
+                        >
                           {AREA.map((area) => (
                             <MenuItem
                               key={area}
                               value={area}
-                              style={getStyles(area, areaOfPractice, theme)}>
+                              style={getStyles(area, areaOfPractice, theme)}
+                            >
                               {area}
                             </MenuItem>
                           ))}
@@ -351,12 +362,14 @@ export default function SignUp() {
                           value={skills}
                           onChange={handleSkillsChange}
                           input={<OutlinedInput label="SKills" />}
-                          MenuProps={MenuProps}>
+                          MenuProps={MenuProps}
+                        >
                           {SKILLS_GOALS.map((skill) => (
                             <MenuItem
                               key={skill}
                               value={skill}
-                              style={getStyles(skill, skills, theme)}>
+                              style={getStyles(skill, skills, theme)}
+                            >
                               {skill}
                             </MenuItem>
                           ))}
@@ -380,12 +393,14 @@ export default function SignUp() {
                           value={areaOfIntrest}
                           onChange={handleAreaOfInterestChange}
                           input={<OutlinedInput label="Area of Interest" />}
-                          MenuProps={MenuProps}>
+                          MenuProps={MenuProps}
+                        >
                           {AREA.map((area) => (
                             <MenuItem
                               key={area}
                               value={area}
-                              style={getStyles(area, areaOfIntrest, theme)}>
+                              style={getStyles(area, areaOfIntrest, theme)}
+                            >
                               {area}
                             </MenuItem>
                           ))}
@@ -404,12 +419,14 @@ export default function SignUp() {
                           value={mentorshipGoals}
                           onChange={handleMentorshipGoalsChange}
                           input={<OutlinedInput label="Mentorship Goals" />}
-                          MenuProps={MenuProps}>
+                          MenuProps={MenuProps}
+                        >
                           {SKILLS_GOALS.map((goal) => (
                             <MenuItem
                               key={goal}
                               value={goal}
-                              style={getStyles(goal, mentorshipGoals, theme)}>
+                              style={getStyles(goal, mentorshipGoals, theme)}
+                            >
                               {goal}
                             </MenuItem>
                           ))}
@@ -424,7 +441,8 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}>
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">

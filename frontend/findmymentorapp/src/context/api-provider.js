@@ -67,47 +67,32 @@ export function APIProvider(props) {
     setUserId(null);
   }
 
-  async function register(
-    firstName,
-    lastName,
-    email,
-    password,
-    biography,
-    workLocation,
-    isMentor,
-    isMentee,
-    yearsOfPractice,
-    designation,
-    zone,
-    areaPractice,
-    skills,
-    areasInterest,
-    mentorshipGoals
-  ) {
+  async function register(registrationData) {
     // Send credentials to server and save the token from the response
     try {
-      const response = await fetch(API_URL + "users", {
+      const response = await fetch(API_URL + "user/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          biography: biography,
-          workLocation: workLocation,
-          isMentor: isMentor,
-          isMentee: isMentee,
-          yearsOfPractice: yearsOfPractice,
-          designation: designation,
-          zone: zone,
-          areaPractice: areaPractice,
-          skills: skills,
-          areasInterest: areasInterest,
-          mentorshipGoals: mentorshipGoals,
-        }),
+        body: JSON.stringify(registrationData),
+        // body: JSON.stringify({
+        //   firstName: firstName,
+        //   lastName: lastName,
+        //   email: email,
+        //   password: password,
+        //   biography: biography,
+        //   workLocation: workLocation,
+        //   isMentor: isMentor,
+        //   isMentee: isMentee,
+        //   yearsOfPractice: yearsOfPractice,
+        //   designation: designation,
+        //   zone: zone,
+        //   areaPractice: areaPractice || null,
+        //   skills: skills || [],
+        //   areasInterest: areasInterest || [],
+        //   mentorshipGoals: mentorshipGoals || [],
+        // }),
       });
       const body = await response.json();
 
