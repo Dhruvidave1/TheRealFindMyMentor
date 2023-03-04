@@ -6,7 +6,7 @@ import {
   ZONE,
   AREA,
   SKILLS_GOALS,
-} from "../../common/constants.js";
+} from "../../common/constants.mjs";
 
 const profileSchema = mongoose.Schema({
   firstName: {
