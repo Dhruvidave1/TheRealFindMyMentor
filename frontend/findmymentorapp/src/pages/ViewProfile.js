@@ -1,7 +1,6 @@
 import React from 'react';
 import './ViewProfile.css';
 import TextField from '@mui/material/TextField';
-import Menu from '@mui/material/Menu';
 import { useState} from "react";
 
 
@@ -9,6 +8,10 @@ import { useState} from "react";
 function ViewProfile() {
 
     const [nurse_name, setNurseName] = useState("");
+    const [nurse_years, setNurseYears] = useState("");
+    const [nurse_zone, setNurseZone] = useState("");
+    const [nurse_area, setNurseArea] = useState("");
+    const [nurse_skill, setNurseSkill] = useState("");
 
     return (
         <div className='all'>
@@ -29,26 +32,46 @@ function ViewProfile() {
             <div className='yop'>
                 <h1>Years of Practice</h1>
             </div>
-            <Menu></Menu>
             <TextField className='years'
             required 
             id='outlined-required'
             helperText="EX: Billy Bob Joe"
-            value={nurse_name}
-            onChange={(e)=>setNurseName(e.target.value)}>
+            value={nurse_years}
+            onChange={(e)=>setNurseYears(e.target.value)}>
             </TextField>
     
             <div className='zone'>
                 <h1>Zone</h1>
             </div>
+            <TextField className='years'
+            required 
+            id='outlined-required'
+            helperText="EX: Billy Bob Joe"
+            value={nurse_zone}
+            onChange={(e)=>setNurseZone(e.target.value)}>
+            </TextField>
 
             <div className='aop'>
                 <h1>Area of Practice</h1>
             </div>
+            <TextField className='years'
+            required 
+            id='outlined-required'
+            helperText="EX: Billy Bob Joe"
+            value={nurse_area}
+            onChange={(e)=>setNurseArea(e.target.value)}>
+            </TextField>
 
             <div className='skillgoal'>
                 <h1>Skills Goal</h1>
             </div>
+            <TextField className='years'
+            required 
+            id='outlined-required'
+            helperText="EX: Billy Bob Joe"
+            value={nurse_skill}
+            onChange={(e)=>setNurseSkill(e.target.value)}>
+            </TextField>
 
         </div>
 
