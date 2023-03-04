@@ -1,6 +1,7 @@
 import { generateToken } from '../utils/generateToken.js';
 import Profile from '../models/profileModel.js';
 
+// GET http://localhost:3000/api/user/ INCLUDE TOKEN
 export const getUsers = async (req, res) => {
 	const user = await Profile.findById(req.Profile._id);
 	res.send({
@@ -8,6 +9,7 @@ export const getUsers = async (req, res) => {
 	});
 };
 
+// GET http://localhost:3000/api/user/login
 export const authUser = async (req, res) => {
 	// data that is being sent from front end
 	const { email, password } = req.body;
@@ -31,6 +33,7 @@ export const authUser = async (req, res) => {
 	res.send({ email, password });
 };
 
+// POST http://localhost:3000/api/user/
 export const createUser = async (req, res) => {
 	const {
 		firstName,
@@ -88,12 +91,67 @@ export const createUser = async (req, res) => {
 	}
 };
 
+// PATCH http://localhost:3000/api/user/ SEND TOKEN
 export const updateUser = async (req, res) => {
-	res.send({ success: true, data: 'updateUser!' });
-};
+	const user = await Profile.findById(req.Profile._id);
 
-export const deleteUser = async (req, res) => {
-	res.send({ success: true, data: 'deleteUser!' });
-};
+	if (user) {
+		user.firstName = req.body.firstName;
+		user.lastName = req.body.lastName;
+		// user.email = req.body.email;
+		user.biography = req.body.biography;
+		user.workLocation = req.body.workLocation;
+		user.isMentor = req.body.isMentor;
+		user.isMentee = req.body.isMentee;
+		user.yearsOfPractice = req.body.yearsOfPractice;
+		user.designation = req.body.designation;
+		user.zone = req.body.zone;
+		user.areaPractice = req.body.areaPractice;
+		user.skills = req.body.skills;
+		user.areasInterest = req.body.areasInterest;
+		user.mentorshipGoals = req.body.mentorshipGoals;
+		user.password = req.body.password;
 
-// export default controllerMethods;
+		// Check if the new email is different from the current email
+		if (req.body.email && req.body.email !== user.email) {
+			const existingUser = await Profile.findOne({ email: req.body.email });
+
+			// If the new email already exists in the database, return an error
+			if (existingUser) {
+				return res.status(400).json({ error: 'Email address already in use' });
+			}
+
+			// Update the user's email
+			user.email = req.body.email;
+		}
+
+		try {
+			const updatedUser = await user.save();
+			res.json({
+				_id: updatedUser._id,
+				firstName: updatedUser.firstName,
+				lastName: updatedUser.lastName,
+				email: updatedUser.email,
+				biography: updatedUser.biography,
+				workLocation: updatedUser.workLocation,
+				isMentor: updatedUser.isMentor,
+				isMentee: updatedUser.isMentee,
+				yearsOfPractice: updatedUser.yearsOfPractice,
+				designation: updatedUser.designation,
+				zone: updatedUser.zone,
+				areaPractice: updatedUser.areaPractice,
+				skills: updatedUser.skills,
+				areasInterest: updatedUser.areasInterest,
+				mentorshipGoals: updatedUser.mentorshipGoals,
+				token: generateToken(updatedUser._id),
+			});
+		} catch (error) {
+			// handle errors
+			res.status(500).json({ error: 'Server error' });
+			console.log(error);
+		}
+	} else {
+		res.status(404);
+		throw new Error('User not found');
+	}
+};
