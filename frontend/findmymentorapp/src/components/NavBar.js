@@ -16,7 +16,16 @@ function Navbar() {
             <ul className='nav-menu active'>
 
                 <li className='nav-item'>
-                    <Link to='/Dashboard' className='nav-links' > Dashboard </Link>
+                    <Link to='/SignIn' className='nav-links' > Sign In </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link to='/SignUp' className='nav-links' > Sign Up </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link to='/ViewProfile' className='nav-links' > View Profile </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link to='/Match' className='nav-links' > Match! </Link>
                 </li>                
                 
 

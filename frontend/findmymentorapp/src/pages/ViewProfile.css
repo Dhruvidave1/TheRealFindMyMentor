@@ -1,0 +1,45 @@
+.all{
+    background-color: rgb(209, 244, 248);
+    justify-content: center;
+    align-items: center;
+    
+}
+.container1{
+    background-color: aqua;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headshot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.yop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.skillgoal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
