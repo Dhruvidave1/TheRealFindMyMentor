@@ -51,7 +51,7 @@ export function APIProvider(props) {
         },
       });
       const body = await response.json();
-      if (body.success === true) {
+      if (response.ok) {
         console.log(body);
         return body;
       } else return body;
@@ -78,7 +78,7 @@ export function APIProvider(props) {
       });
       const body = await response.json();
 
-      if (body.success) {
+      if (response.ok) {
         return true;
       } else return body.message;
     } catch (e) {
@@ -89,7 +89,7 @@ export function APIProvider(props) {
 
   async function getMatches() {
     try {
-      const response = await fetch(API_URL + "matches", {
+      const response = await fetch(API_URL + "match", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwt}`,
@@ -97,7 +97,7 @@ export function APIProvider(props) {
         },
       });
       const body = await response.json();
-      if (body.success === true) {
+      if (response.ok) {
         console.log(body);
         return body;
       } else return body;
