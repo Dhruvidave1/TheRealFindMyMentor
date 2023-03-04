@@ -32,7 +32,60 @@ export const authUser = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-	res.send({ success: true, data: 'createUsers!' });
+	const {
+		firstName,
+		lastName,
+		email,
+		password,
+		biography,
+		workLocation,
+		isMentor,
+		isMentee,
+		yearsOfPractice,
+		designation,
+		zone,
+		areaPractice,
+		skills,
+		areasInterest,
+		mentorshipGoals,
+	} = req.body;
+
+	const userExists = await Profile.findOne({ email });
+
+	if (userExists) {
+		res.status(400);
+		throw new Error('User already exists');
+	}
+
+	const user = await Profile.create({
+		firstName,
+		lastName,
+		email,
+		password,
+		biography,
+		workLocation,
+		isMentor,
+		isMentee,
+		yearsOfPractice,
+		designation,
+		zone,
+		areaPractice,
+		skills,
+		areasInterest,
+		mentorshipGoals,
+	});
+
+	if (user) {
+		res.status(201).json({
+			_id: user._id,
+			name: user.name,
+			email: user.email,
+			token: generateToken(user._id),
+		});
+	} else {
+		res.status(400);
+		throw new Error('Invalid user data');
+	}
 };
 
 export const updateUser = async (req, res) => {
