@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useContext } from 'react';
 import { useSessionStorageState } from '../hooks/useSessionStorageState';
 import { APIProvider } from '../context/api-provider';
+import { useNavigate } from 'react-router-dom';
 
 const API_URL = 'http://localhost:4000/api/';
 
@@ -26,6 +27,7 @@ export default function SignIn() {
 	const [jwt, setJwt] = useSessionStorageState('jwt', null);
 	const [userId, setUserId] = useSessionStorageState('userId', null);
 
+	const navigate = useNavigate();
 	async function login(email, password) {
 		try {
 			const response = await fetch('http://localhost:4000/api/user/login', {
@@ -43,6 +45,7 @@ export default function SignIn() {
 				const { token, _id } = body;
 				setJwt(token);
 				setUserId(_id);
+				navigate('/Match');
 				return true;
 			} else return body;
 		} catch (error) {
