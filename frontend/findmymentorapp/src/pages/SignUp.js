@@ -16,7 +16,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-
 import * as React from "react";
 import {
   AREA,
@@ -136,9 +135,20 @@ export default function SignUp() {
       yearsOfPractice: yearsOfPractice,
       designation: designation,
       zone: zone,
-      areasInterest: areaOfIntrest,
-      mentorshipGoals: mentorshipGoals,
     };
+    
+    if (isMentee && !isMentor) {
+      profile.areasInterest = areaOfIntrest;
+      profile.mentorshipGoals = mentorshipGoals;
+    } else if (isMentor && !isMentee) {
+      profile.areaPractice = areaOfPractice;
+      profile.skills = skills;
+    } else {
+      profile.areasInterest = areaOfIntrest;
+      profile.mentorshipGoals = mentorshipGoals;
+      profile.areaPractice = areaOfPractice;
+      profile.skills = skills;
+    }
   };
 
   return (
