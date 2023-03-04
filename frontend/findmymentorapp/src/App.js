@@ -19,7 +19,7 @@ function App() {
           <Route path='/' element={<LogIn />} />
           <Route path='/DashBoard' element={<DashBoard />} />
           <Route path='/Match' element={<Match />} />
-          <Route path='/Login' element={<LogIn />} /> 
+          <Route path='/SignIn' element={<LogIn />} /> 
           <Route path='/Signup' element={<Signup />} />
           <Route path='/Summary' element={<Summary />} />      
           <Route path='/ViewProfile' element={<ViewProfile />} />
