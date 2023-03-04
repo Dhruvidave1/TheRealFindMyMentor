@@ -27,10 +27,8 @@ export const authUser = async (req, res) => {
 			token: generateToken(user._id),
 		});
 	} else {
-		res.status(401);
-		throw new Error('Invalid email or password');
+		res.status(401)({ message: 'unauthorized, wrong email or password' });
 	}
-	res.send({ email, password });
 };
 
 // POST http://localhost:3000/api/user/
