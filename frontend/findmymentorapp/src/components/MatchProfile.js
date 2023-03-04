@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MatchProfile.css';
 import Button from '@mui/material/Button';
 
 function MatchProfile(props) {
   const { firstName, lastName, workLocation, designation, areasInterest, mentorshipGoals, image } = props.person;
+   
   return (
     <div>
       <div className="match-profile">
@@ -15,9 +16,19 @@ function MatchProfile(props) {
         <p><strong>Mentorship Goals: </strong>{mentorshipGoals.join(', ')}</p>
         </div>
         <div className="button-container">
-          <Button variant="contained" className="like-button">Like</Button>
-          <Button variant="contained" className="dislike-button">Dislike</Button>
-        </div>
+        <Button
+          variant="contained"
+          className="like-button"
+        >
+          Like
+        </Button>
+        <Button
+          variant="contained"
+          className="dislike-button"
+        >
+          Dislike
+        </Button>
+      </div>
     </div>
   );
 }
