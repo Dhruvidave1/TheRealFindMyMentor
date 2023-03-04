@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 
 function Summary() {
@@ -9,3 +10,6 @@ function Summary() {
 }
 
 export default Summary;
+=======
+
+>>>>>>> 7b1a33c9d1e32216408e336676b4d5a378fe45ac
