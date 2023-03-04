@@ -1,4 +1,4 @@
-import express, { json } from 'express';
+import express from 'express';
 import connectDB from './config/db.js';
 import dotenv from 'dotenv';
 const server = express();
@@ -11,7 +11,7 @@ import matchRouter from './routes/matchRoutes.js';
 dotenv.config();
 connectDB();
 
-server.use(json);
+server.use(express.json());
 
 server.use('/api/user', userRouter);
 server.use('/api/match', matchRouter);
