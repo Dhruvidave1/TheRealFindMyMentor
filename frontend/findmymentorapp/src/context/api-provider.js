@@ -24,6 +24,7 @@ export function APIProvider(props) {
       });
 
       const body = await response.json();
+      console.log("body: " + body)
       if (response.ok) {
         // Set the token in session storage for use in later API calls
         const { token, _id } = body;

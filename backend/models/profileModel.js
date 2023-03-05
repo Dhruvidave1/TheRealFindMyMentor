@@ -59,7 +59,7 @@ const profileSchema = mongoose.Schema({
     enum: ZONE,
   },
   areaPractice: {
-    type: String,
+    type: [String],
     required: [
       function () {
         return this.isMentor;

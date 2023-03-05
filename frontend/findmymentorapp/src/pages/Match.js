@@ -11,6 +11,7 @@ function Match() {
     async function prepareMentors() {
       const data = await getMatches();
       setMentors(data.matches.mentors);
+      console.log("mentors: ")
       console.log(mentors);
     }
 
