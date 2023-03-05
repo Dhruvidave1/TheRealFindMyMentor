@@ -20,7 +20,6 @@ const NUM_MATCHES_TO_RETURN = 10;
 
 export async function getMatches(uid) {
   const user = await Profile.findById(uid).exec();
-  //   console.log(user);
   if (!user) {
     console.log("User not found");
     return null;
@@ -32,6 +31,7 @@ export async function getMatches(uid) {
   if (user.isMentee) {
     matches.mentors = await getMentors(user);
   }
+
   //   console.log("Number of mentors: " + matches.mentors?.length || 0);
   //   console.log("Number of mentees: " + matches.mentees?.length || 0);
   return matches;
@@ -53,6 +53,8 @@ async function getMentors(user) {
     mentorDesignations,
     "mentors"
   );
+  
+  
   const result = getBestMatches(user, potentialMatches);
   //   console.log("Number of mentors: " + result.length);
   //   console.log(result.map((r) => r.matchScore));
@@ -78,6 +80,7 @@ async function getAllEligibleUsers(allowedDesignations, userType) {
   } else if (userType === "mentees") {
     query.where("isMentee", true);
   }
+  
   return await query.exec();
 }
 

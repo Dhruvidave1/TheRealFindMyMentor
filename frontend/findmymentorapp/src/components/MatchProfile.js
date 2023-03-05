@@ -12,6 +12,11 @@ function MatchProfile(props) {
 		areasInterest,
 		mentorshipGoals,
 		image,
+		areaPractice,
+		skills,
+		isMentor,
+		isMentee
+
 	} = props.person;
 
 	return (
@@ -23,14 +28,24 @@ function MatchProfile(props) {
 				</h3>
 				<p>{workLocation}</p>
 				<p>{designation}</p>
-				<p>
-					<strong>Areas of Interest: </strong>
-					{areasInterest.join(', ')}
-				</p>
-				<p>
+				
+				{ isMentee ? (<><p>
+					<strong>Areas of Interest:  </strong>
+					{ areasInterest.join(', ')}
+				</p><p>
 					<strong>Mentorship Goals: </strong>
-					{mentorshipGoals.join(', ')}
-				</p>
+						{mentorshipGoals.join(', ')}
+					</p></> 
+				) : (<></>)}
+				{ isMentor ? (<><p>
+					<strong>Areas of Practice: </strong>
+					{areaPractice.join(', ')}
+				</p><p>
+					<strong>Skills: </strong>
+					{skills.join(', ')}
+					</p></> 
+				) : (<></>)}
+
 			</div>
 			<div className='button-container'>
 				<Button variant='contained' className='like-button'>

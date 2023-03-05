@@ -25,7 +25,7 @@ export default function SignIn() {
   const loginFunc = async (e) => {
     const result = await login(email, password);
     console.log(result);
-    if (result === true) {
+    if (result) {
       navigate("/Match");
     }
     console.log(result);
