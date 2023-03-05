@@ -1,21 +1,22 @@
 import "./App.css";
 import Navbar from "./components/NavBar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
 import { APIProvider } from "./context/api-provider";
+import { DarkModeProvider } from "./context/theme.context";
+
 import CreateRoutes from "./services/CreateRoutes";
 
 function App() {
   const routes = CreateRoutes();
 
   return (
-    <>
-      <APIProvider>
-        <Router>
-          <Navbar />
-          {routes}
-        </Router>
-      </APIProvider>
-    </>
+    <APIProvider>
+      <DarkModeProvider>
+        <CssBaseline />
+        <Navbar />
+        {routes}
+      </DarkModeProvider>
+    </APIProvider>
   );
 }
 

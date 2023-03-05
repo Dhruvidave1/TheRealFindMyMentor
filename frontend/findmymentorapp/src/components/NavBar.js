@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-// import { DarkModeContext } from "../contexts/theme.context";
+import { DarkModeContext } from "../context/theme.context";
 import { APIContext } from "../context/api-provider";
 import {
   Typography,
@@ -9,6 +9,7 @@ import {
   IconButton,
   Box,
   Container,
+  Tooltip,
   Button,
   Menu,
   MenuItem,
@@ -16,13 +17,12 @@ import {
 import {
   Brightness4,
   Brightness7,
-  AccountCircle,
   Menu as MenuIcon,
 } from "@mui/icons-material";
 
 function NavBar() {
-  //   const { darkMode, setDarkMode } = useContext(DarkModeContext);
-  const { isLoggedIn, logout } = useContext(APIContext);
+  const { darkMode, setDarkMode } = useContext(DarkModeContext);
+  const { isLoggedIn } = useContext(APIContext);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const pages = isLoggedIn()
@@ -43,9 +43,9 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ mb: 4 }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters style={{ justifyContent: "space-between" }}>
           <Typography
             variant="h6"
             noWrap
@@ -127,6 +127,11 @@ function NavBar() {
               </Link>
             ))}
           </Box>
+          <Tooltip title="Toggle Theme">
+            <IconButton onClick={() => setDarkMode(!darkMode)}>
+              {darkMode ? <Brightness4 /> : <Brightness7 />}
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </Container>
     </AppBar>
