@@ -82,7 +82,7 @@ function CreateRoutes() {
         path="/"
         element={
           <PrivateRoute>
-            <DashBoard />
+            <Match />
           </PrivateRoute>
         }
       />
