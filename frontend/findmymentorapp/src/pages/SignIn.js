@@ -9,32 +9,20 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import React, { useState, useContext } from "react";
 import { APIContext } from "../context/api-provider.js";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
   const { login } = useContext(APIContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigate = useNavigate();
-
-  const loginFunc = async (e) => {
-    const result = await login(email, password);
-    console.log(result);
-    if (result === true) {
-      navigate("/Match");
-    }
-    console.log(result);
-  };
-
-  const handleSubmit = (event) => {
-    loginFunc();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+    await login(email, password);
   };
 
   return (

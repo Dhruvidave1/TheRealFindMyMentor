@@ -111,7 +111,7 @@ export default function SignUp() {
     );
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const profile = {
       firstName: firstName,
@@ -138,8 +138,8 @@ export default function SignUp() {
       profile.areaPractice = areaOfPractice;
       profile.skills = skills;
     }
-    register(profile);
     console.log(profile);
+    await register(profile);
   };
 
   return (
