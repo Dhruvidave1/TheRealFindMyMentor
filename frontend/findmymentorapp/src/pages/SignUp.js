@@ -8,13 +8,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
-import Link from "@mui/material/Link";
 import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { APIContext } from "../context/api-provider.js";
 
@@ -443,13 +443,9 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/signin" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+            <Button component={Link} to="/login" fullWidth variant="text">
+              {"Already have an account? Sign in."}
+            </Button>
           </Box>
         </Box>
       </Container>

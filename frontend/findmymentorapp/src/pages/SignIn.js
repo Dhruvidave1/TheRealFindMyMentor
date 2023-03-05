@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useState, useContext } from "react";
 import { APIContext } from "../context/api-provider.js";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -100,6 +101,9 @@ export default function SignIn() {
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
+            </Button>
+            <Button component={Link} to="/signup" fullWidth variant="text">
+              {"Or Sign Up"}
             </Button>
           </Box>
         </Box>
